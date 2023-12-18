@@ -559,7 +559,11 @@ class Zigbee extends utils.Adapter {
     async processConverters(converters, devId, model, mappedModel, message, meta) {
         
         for (const converter of converters) {
-            this.log.debug(`DEBUG HERE:`, converter, model);
+            try {
+            this.log.debug(`DEBUG HERE: ${JSON.stringify(converter)} AND HERE  ${JSON.stringify(model)} AND HERE ${JSON.stringify(message)}`);
+            }catch(err) {
+                this.log.debug('err HERE123: ' + err)
+            }
             const publish = (payload) => {
                 this.log.debug(`Publish ${safeJsonStringify(payload)} to ${safeJsonStringify(devId)}`);
                 if (payload) {
