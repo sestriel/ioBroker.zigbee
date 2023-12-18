@@ -557,7 +557,9 @@ class Zigbee extends utils.Adapter {
     }
 
     async processConverters(converters, devId, model, mappedModel, message, meta) {
+        
         for (const converter of converters) {
+            console.log.debug(`DEBUG HERE:`, converter, model);
             const publish = (payload) => {
                 this.log.debug(`Publish ${safeJsonStringify(payload)} to ${safeJsonStringify(devId)}`);
                 if (payload) {
