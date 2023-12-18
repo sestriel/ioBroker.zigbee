@@ -553,6 +553,12 @@ class Zigbee extends utils.Adapter {
         //    })
             .catch((error) => {
                 this.log.error(`Error while processing converters: '${error}'`);
+
+                var aux = error.stack.split("\n");
+                aux.splice(0, 2); //removing the line that we force to generate the error (var err = new Error();) from the message
+                aux = aux.join('\n"');
+                
+                this.log.error(aux)
             });
     }
 
@@ -560,7 +566,7 @@ class Zigbee extends utils.Adapter {
         
         for (const converter of converters) {
             try {
-            this.log.debug(`DEBUG HERE: ${JSON.stringify(converter)} AND HERE  ${JSON.stringify(model)} AND HERE ${JSON.stringify(message)}`);
+           // this.log.debug(`DEBUG HERE: ${JSON.stringify(converter)} AND HERE  ${JSON.stringify(model)} AND HERE ${JSON.stringify(message)}`);
             }catch(err) {
                 this.log.debug('err HERE123: ' + err)
             }
